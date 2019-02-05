@@ -1,20 +1,24 @@
 version: "2"
 networks:
     web:
-        external: true    
+        external: true
 services:
     strichliste:
         build:
             context: .
-            dockerfile: ./data/Dockerfile
+            dockerfile: ./docker/Dockerfile
+        # if you use traefik you can remove the ports section
+        ports:
+            - 8080:8080
         networks:
-            - web
+            # - traefik_network  # your traefik network
             - default
         volumes:
-             - ./data/services.yaml:/source/config/services.yaml
+             - ./config/services.yaml:/source/config/services.yaml
              - ./data/app.db:/source/var/app.db
-        labels:
-            - "traefik.docker.network=web"
-            - "traefik.frontend.rule=Host:{URL}"
-            - "traefik.enalbe=true"
-            - "traefik.port=8080"
+        # Traefik configuration
+        # labels:
+        #     - "traefik.docker.network={your traefik network}"
+        #     - "traefik.frontend.rule=Host:{URL}"
+        #     - "traefik.enable=true"
+        #     - "traefik.port=8080"
