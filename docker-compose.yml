@@ -1,7 +1,7 @@
 version: "2"
-networks:
-    web:
-        external: true
+# networks:
+    # {your traefik network}:
+        # external: true
 services:
     strichliste:
         build:
