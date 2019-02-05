@@ -7,7 +7,7 @@ RUN apk --no-cache add ca-certificates \
 
 RUN mkdir /source
 WORKDIR /source
-RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/server/releases/download/v1.0.0/strichliste.tar.gz
+RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/server/releases/download/v1.2.3/strichliste.tar.gz
 RUN tar -xf strichliste.tar.gz
 RUN rm -r strichliste.tar.gz
 
