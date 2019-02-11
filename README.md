@@ -8,10 +8,14 @@ The Dockerfile as well as the configuration files are taken/based on the docker 
 
 This repository was created to be cloned and run with only minimal configuration needed.
 To get started you simply clone this repository,
-```https://github.com/strichliste/strichliste-docker.git```
+```git clone https://github.com/strichliste/strichliste-docker.git```
 
-go into the strichliste directory and execute:
+go into the strichliste directory and execute
 ```docker-compose up -d```
+to start the container.
+
+If you migrate from an older version of this repository you might need to rebuild the container to be able to use the new features:
+```docker-compose up --build -d```
 
 This creates a docker container based on alpine linux which contains the sourcefiles of https://github.com/strichliste/server. 
 As default the service is running on localhost:8080
