@@ -1,5 +1,6 @@
 # Strichliste
-This is a already set up ready to go docker container for the strichliste service (https://github.com/strichliste/server).
+This is a already set up, ready to go docker container for the strichliste service (https://www.strichliste.org/).
+The container uses the strichliste-backend (https://github.com/strichliste/strichliste-backend) and strichliste-web-frontend (https://github.com/strichliste/strichliste-web-frontend) repositories.
 
 The Dockerfile as well as the configuration files are taken/based on the docker branch of sti-ip (https://github.com/stp-ip/server).
 
