@@ -7,9 +7,12 @@ RUN apk --no-cache add ca-certificates \
 
 RUN mkdir /source
 WORKDIR /source
-RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/server/releases/download/v1.2.3/strichliste.tar.gz
+RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/strichliste-backend/releases/download/v1.4.0/strichliste-backend.tar.gz
 RUN tar -xf strichliste.tar.gz
 RUN rm -r strichliste.tar.gz
+
+RUN curl -Lo strichliste-frontend.tar.gz https://github.com/strichliste/strichliste-web-frontend/releases/download/v1.3.1/strichliste-web-frontend.tar.gz
+RUN tar -xf strichliste-frontend.tar.gz --strip 1 -C public/
 
 FROM alpine:3.8
 
@@ -28,7 +31,8 @@ RUN apk --no-cache add ca-certificates \
     php7-pdo_mysql \
     php7-fpm \
     nginx \
-    bash
+    bash \
+    yarn
 
 COPY --from=release /source source
 
@@ -49,8 +53,8 @@ COPY ./config/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./config/nginx.conf /etc/nginx/nginx.conf
 COPY ./config/default.conf /etc/nginx/conf.d/default.conf
 
-RUN cp /source/var/app.db.example /source/app.db.example
-RUN cp /source/var/app.db.example /source/var/app.db
+COPY ./data/app.db.empty /source/app.db.example
+COPY ./data/app.db.empty /source/var/app.db
 
 VOLUME /source/var
 
