@@ -1,4 +1,7 @@
-# Strichliste
+# Strichliste (WIP)
+
+**Attention**: Don't use this yet. This docker container still uses the deprecated sqlite which will lead to errors when using the split invoice function. 
+
 This is a already set up, ready to go docker container for the strichliste service (https://www.strichliste.org/).
 The container uses the strichliste-backend (https://github.com/strichliste/strichliste-backend) and strichliste-web-frontend (https://github.com/strichliste/strichliste-web-frontend) repositories.
 
