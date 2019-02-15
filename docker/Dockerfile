@@ -7,12 +7,10 @@ RUN apk --no-cache add ca-certificates \
 
 RUN mkdir /source
 WORKDIR /source
-RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/strichliste-backend/releases/download/v1.4.0/strichliste-backend.tar.gz
+RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/strichliste/releases/download/v1.4.1/strichliste.tar.gz
 RUN tar -xf strichliste.tar.gz
 RUN rm -r strichliste.tar.gz
 
-RUN curl -Lo strichliste-frontend.tar.gz https://github.com/strichliste/strichliste-web-frontend/releases/download/v1.3.1/strichliste-web-frontend.tar.gz
-RUN tar -xf strichliste-frontend.tar.gz --strip 1 -C public/
 
 FROM alpine:3.8
 
