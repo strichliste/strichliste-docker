@@ -1,4 +1,4 @@
-# Strichliste (WIP)
+# Strichliste
 
 This is a already set up, ready to go docker container for the strichliste service (https://www.strichliste.org/) using a MariaDB database.
 The container uses the strichliste-backend (https://github.com/strichliste/strichliste-backend) and strichliste-web-frontend (https://github.com/strichliste/strichliste-web-frontend) repositories.
