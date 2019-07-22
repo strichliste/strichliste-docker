@@ -7,7 +7,7 @@ RUN apk --no-cache add ca-certificates \
 
 RUN mkdir /source
 WORKDIR /source
-RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/strichliste/releases/download/v1.4.1/strichliste.tar.gz
+RUN curl -Lo strichliste.tar.gz https://github.com/strichliste/strichliste/releases/download/v1.6.1/strichliste.tar.gz
 RUN tar -xf strichliste.tar.gz
 RUN rm -r strichliste.tar.gz
 
@@ -25,11 +25,11 @@ RUN apk --no-cache add ca-certificates \
     php7-xml \
     php7-json \
     php7-dom \
-    php7-pdo_sqlite \
     php7-pdo_mysql \
     php7-fpm \
     nginx \
     bash \
+    mysql-client \
     yarn
 
 COPY --from=release /source source
@@ -50,9 +50,6 @@ COPY ./config/php-fpm.conf /etc/php7/php-fpm.conf
 COPY ./config/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./config/nginx.conf /etc/nginx/nginx.conf
 COPY ./config/default.conf /etc/nginx/conf.d/default.conf
-
-COPY ./data/app.db.empty /source/app.db.example
-COPY ./data/app.db.empty /source/var/app.db
 
 VOLUME /source/var
 
