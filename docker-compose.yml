@@ -1,7 +1,8 @@
 version: "2"
-# networks:
-    # {your traefik network}:
-        # external: true
+
+networks:
+    db_net:
+        external: false
 services:
     strichliste:
         build:
@@ -13,12 +14,29 @@ services:
         networks:
             # - traefik_network  # your traefik network
             - default
+            - db_net
+        env_file:
+            - docker.env
         volumes:
              - ./config/services.yaml:/source/config/services.yaml
-             - ./data/app.db:/source/var/app.db
+             - ./config/strichliste.yaml:/source/config/strichliste.yaml
+             - ./config/doctrine.yaml:/source/config/packages/doctrine.yaml
+
+        environment:
+            APP_ENV: "prod"
+
         # Traefik configuration
         # labels:
         #     - "traefik.docker.network={your traefik network}"
         #     - "traefik.frontend.rule=Host:{URL}"
         #     - "traefik.enable=true"
         #     - "traefik.port=8080"
+    strichliste_db:
+        image: mariadb:10.4.6
+        restart: always
+        networks:
+            - db_net
+        env_file:
+            - docker.env
+        volumes:
+            - ./data/mysql:/var/lib/mysql
