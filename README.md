@@ -46,12 +46,12 @@ First we need to save the sqlite table contents into a file. For this the follow
 Ideally you want 3 different files for the three database tables (user, article and transactions).
 
 ### Edit the CSV Files
-Since the sqlite csv dump produces empty cells for non existant values we need to replace these empty cells with NULL. To archive that i used the following command in vim (any other find and replace will do the same job):
+Since the sqlite csv dump produces empty cells for non existant values we need to replace these empty cells with NULL. To achieve that i used the following command in vim (any other find and replace will do the same job):
 ```:%s/,,/,NULL,/gc```
 In this moment make sure the amount of columns in the file matches the first line (which repesents the names of the columns).
 
 ### Mount the files into the container
-To make the csv files accessable from inside the container we need to mount them as volumes.
+To make the csv files accessible from inside the container we need to mount them as volumes.
 To do that you would add the following line for each of the 3 files to the volumes section inside the docker-compose.yml under the service strichliste (line 22):
 ```- ./path/to/csv/file.csv:/source/var/file.csv```
 
@@ -60,7 +60,7 @@ To do that you would add the following line for each of the 3 files to the volum
 
 ### Load csv data into tables
 To load the csv data into the database tables you need to connect to the database with the following command (while still inside the strichliste container):
-```mysql -u strichliste -p -host strichliste_db strichliste```
+```mysql -u strichliste -p -h strichliste_db strichliste```
 You will be prompted to supply your choosen MYSQL_PASSWORD.
 After connecting to the database we can finally load the data inside the tables:
 ```LOAD DATA LOCAL INFILE '/source/var/file.csv' INTO TABLE user CHARSET 'utf8' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n';```
