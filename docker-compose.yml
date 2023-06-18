@@ -21,6 +21,7 @@ services:
              - ./config/services.yaml:/source/config/services.yaml
              - ./config/strichliste.yaml:/source/config/strichliste.yaml
              - ./config/doctrine.yaml:/source/config/packages/doctrine.yaml
+             - ./config/default.conf:/etc/nginx/conf.d/default.conf
 
         environment:
             APP_ENV: "prod"
