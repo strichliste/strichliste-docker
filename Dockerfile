@@ -40,7 +40,6 @@ RUN chmod +x /source/entrypoint.sh
 RUN adduser -u 82 -D -S -G www-data www-data
 RUN chown -R www-data:www-data /source
 RUN chown -R www-data:www-data /var/lib/nginx
-RUN chown -R www-data:www-data /var/tmp/nginx
 RUN chown -R www-data:www-data /var/log/nginx
 RUN chown -R www-data:www-data /var/log/php81
 
