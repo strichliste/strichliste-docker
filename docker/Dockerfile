@@ -34,7 +34,7 @@ RUN apk --no-cache add ca-certificates \
 
 COPY --from=release /source source
 
-COPY /docker/entrypoint.sh /source/entrypoint.sh
+COPY entrypoint.sh /source/entrypoint.sh
 RUN chmod +x /source/entrypoint.sh
 
 RUN adduser -u 82 -D -S -G www-data www-data
@@ -46,10 +46,10 @@ RUN chown -R www-data:www-data /var/log/php81
 
 USER www-data
 
-COPY ./config/php-fpm.conf /etc/php81/php-fpm.conf
-COPY ./config/www.conf /etc/php81/php-fpm.d/www.conf
-COPY ./config/nginx.conf /etc/nginx/nginx.conf
-COPY ./config/default.conf /etc/nginx/conf.d/default.conf
+COPY ../config/php-fpm.conf /etc/php81/php-fpm.conf
+COPY ../config/www.conf /etc/php81/php-fpm.d/www.conf
+COPY ../config/nginx.conf /etc/nginx/nginx.conf
+COPY ../config/default.conf /etc/nginx/conf.d/default.conf
 
 VOLUME /source/var
 
