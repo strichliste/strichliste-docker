@@ -1,20 +1,16 @@
-version: "2"
+version: "3.8"
 
-networks:
-    db_net:
-        external: false
 services:
     strichliste:
+        image: ghcr.io/strichliste/strichliste-docker:master
         build:
             context: .
-            dockerfile: ./docker/Dockerfile
         # if you use traefik you can remove the ports section
         ports:
             - 8080:8080
         networks:
-            # - traefik_network  # your traefik network
+            # - proxy  # your traefik network
             - default
-            - db_net
         env_file:
             - docker.env
         volumes:
@@ -31,12 +27,16 @@ services:
         #     - "traefik.frontend.rule=Host:{URL}"
         #     - "traefik.enable=true"
         #     - "traefik.port=8080"
-    strichliste_db:
-        image: mariadb:10.4.6
+    strichliste-db:
+        image: mariadb:10.11.5
         restart: always
         networks:
-            - db_net
+            - default
         env_file:
             - docker.env
         volumes:
             - ./data/mysql:/var/lib/mysql
+
+networks:
+    proxy:
+        external: true
