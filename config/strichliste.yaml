@@ -1,8 +1,16 @@
 parameters:
     strichliste:
+
+        article:
+            enabled: true
+            autoOpen: false
+
+        common:
+            idleTimeout: 30000 # Time in ms
+
         paypal:
             enabled: false
-            recipient: "foo@bar.com"
+            recipient: "foo@bar.de"
             fee: 0
 
         user:
@@ -31,10 +39,13 @@ parameters:
                 timeout: '5 minute' # See http://de.php.net/manual/en/datetime.formats.relative.php
 
             boundary:
-                upper: 200000
-                lower: -200000
+                upper: 15000
+                lower: -2000
 
             transactions:
+                enabled: true
+
+            splitInvoice:
                 enabled: true
 
             deposit:
@@ -46,8 +57,6 @@ parameters:
                     - 200
                     - 500
                     - 1000
-                    - 1500
-                    - 2000
 
             dispense:
                 enabled: true
@@ -58,5 +67,3 @@ parameters:
                     - 200
                     - 500
                     - 1000
-                    - 1500
-
