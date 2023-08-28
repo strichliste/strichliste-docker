@@ -27,7 +27,7 @@ services:
         #     - "traefik.frontend.rule=Host:{URL}"
         #     - "traefik.enable=true"
         #     - "traefik.port=8080"
-    strichliste_db:
+    strichliste-db:
         image: mariadb:10.11.5
         restart: always
         networks:
