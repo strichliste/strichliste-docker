@@ -56,4 +56,4 @@ WORKDIR /source/public
 EXPOSE 8080
 
 ENTRYPOINT ["/source/entrypoint.sh"]
-CMD nginx && php-fpm
+CMD nginx && php-fpm81
