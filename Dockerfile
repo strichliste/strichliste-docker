@@ -28,6 +28,8 @@ RUN apk --no-cache add ca-certificates \
     php81-pdo_mysql \
     php81-fpm \
     php81-session \
+    php81-sqlite3 \
+    php81-pdo_sqlite \
     nginx \
     bash \
     mysql-client \
