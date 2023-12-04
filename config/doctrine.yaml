@@ -9,7 +9,7 @@ doctrine:
     dbal:
         # configure these for your database server
         driver: 'pdo_mysql'
-        server_version: 'mariadb-10.4.6'
+        server_version: 'mariadb-10.11.5'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
@@ -20,6 +20,10 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            datetime_functions:
+                date: App\Doctrine\Functions\Date
+                iif: App\Doctrine\Functions\Iif
         mappings:
             App:
                 is_bundle: false

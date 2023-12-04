@@ -21,21 +21,21 @@ The same change is necessary in config/default.conf:33 where the same DATABASE_U
 
 ### Setup initial database
 After configuring the environment variables you can start the container by executing:
-```docker-compose up -d```
+```docker compose up -d```
 After the containers are started you need to jump into the container by running the following command:
-```docker-compose exec strichliste bash```
+```docker compose exec strichliste bash```
 Inside the container you need to run the following command to create the inital database schema:
 ```./../bin/console doctrine:schema:create```
 (you might need to wait a bit for the database to start up, the command will tell you if it succeeded or not)
 After creating the schema you can ```exit``` the container and the setup is done.
 
 If you migrate from an older version of this repository you might need to rebuild the container to be able to use the new features:
-```docker-compose up --build -d```
+```docker compose up --build -d```
 
 As default the service is running on localhost:8080
 
 ## Traefik configuration
-To use traefik (https://traefik.io/) the docker-compose file has comments for the necessary configuration which should make it easy to setup.
+To use traefik (https://traefik.io/) the docker compose file has comments for the necessary configuration which should make it easy to setup.
 
 ## Migrating data from <= 1.4.1 to a newer version
 To migrate your data from the old sqlite database to the new MariaDB you need a few manual steps. This is probably not the best/most elegant solution but it worked for my production environment.
@@ -52,7 +52,7 @@ In this moment make sure the amount of columns in the file matches the first lin
 
 ### Mount the files into the container
 To make the csv files accessible from inside the container we need to mount them as volumes.
-To do that you would add the following line for each of the 3 files to the volumes section inside the docker-compose.yml under the service strichliste (line 22):
+To do that you would add the following line for each of the 3 files to the volumes section inside the docker compose.yml under the service strichliste (line 22):
 ```- ./path/to/csv/file.csv:/source/var/file.csv```
 
 ### Start the container, connect to it and setup inital database schema
